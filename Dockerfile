@@ -1,25 +1,21 @@
-ARG ELIXIR_VERSION=1.10.4
+ARG ELIXIR_VERSION=1.11.1
 
 FROM elixir:${ELIXIR_VERSION}-alpine AS elixir
 
 FROM papereira/devcontainer-base:alpine
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION=local
+ARG VERSION=
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=1000
 LABEL \
   org.opencontainers.image.authors="paulo.alves.pereira@hey.com" \
-  org.opencontainers.image.created=$BUILD_DATE \
   org.opencontainers.image.version=$VERSION \
-  org.opencontainers.image.revision=$VCS_REF \
   org.opencontainers.image.url="https://github.com/pap/devcontainer-elixir" \
   org.opencontainers.image.documentation="https://github.com/pap/devcontainer-elixir" \
   org.opencontainers.image.source="https://github.com/pap/devcontainer-elixir" \
-  org.opencontainers.image.title="Alpine Elixir Phoenix Dev container" \
-  org.opencontainers.image.description="Elixir Phoenix development container for Visual Studio Code Remote Containers development"
-ENV ELIXIR_IMAGE_VERSION="${VERSION}-${BUILD_DATE}-${VCS_REF}"
+  org.opencontainers.image.title="Alpine Elixir Dev container" \
+  org.opencontainers.image.description="Elixir development container for Visual Studio Code Remote Containers development"
+ENV ELIXIR_IMAGE_VERSION="${VERSION}"
 USER root
 COPY --from=elixir /usr/local/lib/erlang /usr/local/lib/erlang
 COPY --from=elixir /usr/local/lib/elixir /usr/local/lib/elixir
