@@ -1,4 +1,4 @@
-ARG ELIXIR_VERSION=1.12.0-rc.1
+ARG ELIXIR_VERSION=1.12.0
 
 FROM elixir:${ELIXIR_VERSION}-alpine AS elixir
 
@@ -8,7 +8,7 @@ ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=1000
 LABEL \
-  org.opencontainers.image.authors="paulo.alves.pereira@hey.com" \
+  org.opencontainers.image.authors="pauloalvespereira@live.com" \
   org.opencontainers.image.version=$VERSION \
   org.opencontainers.image.url="https://github.com/pap/devcontainer-elixir" \
   org.opencontainers.image.documentation="https://github.com/pap/devcontainer-elixir" \
