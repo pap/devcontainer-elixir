@@ -23,7 +23,7 @@ This is a list of the build arguments used and their default values:
 
 | Build Argument | default value |
 | -------------- | ------------- |
-| ELIXIR_VERSION | 1.13.0 |
+| ELIXIR_VERSION | 1.13.3 |
 | USERNAME | vscode |
 | USER_UID | 1000 |
 | USER_GID | 1000 |
