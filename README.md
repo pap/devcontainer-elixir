@@ -23,7 +23,7 @@ This is a list of the build arguments used and their default values:
 
 | Build Argument | default value |
 | -------------- | ------------- |
-| ELIXIR_VERSION | 1.13.3 |
+| ELIXIR_VERSION | 1.17.0 |
 | USERNAME | vscode |
 | USER_UID | 1000 |
 | USER_GID | 1000 |
@@ -37,6 +37,7 @@ The default user for the generated image is `vscode`. Let's say you want the gen
 docker build \
   --build-arg VERSION=`date -u +"%Y%m%d"`-`git rev-parse --short HEAD` \
   --build-arg USERNAME=demo \
+  --platform <PLATFORM> \
   -t <IMAGE NAME>:<IMAGE TAG> .
 ```
 
@@ -47,8 +48,10 @@ The generated image will run under the `demo` user instead of the default `vscod
 To run a container using the generated docker image the following command can be used:
 
 ```sh
-docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock <IMAGE_ID>
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -e TZ=<TIMEZONE> <IMAGE_ID>
 ```
+
+`-e TZ="Europe/Madrid"` will set the timezone to Madrid
 
 This command will run in interactive mode and remove the container we exit it. We are also mounting a volume that allows us to connect the container to the host docker socket.
 
