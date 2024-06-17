@@ -1,8 +1,10 @@
-ARG ELIXIR_VERSION=1.13.3
+ARG ELIXIR_VERSION=1.17.0
+ARG OTP_VERSION=otp-27
+ARG ARCH
 
-FROM elixir:${ELIXIR_VERSION}-alpine AS elixir
+FROM ${ARCH}elixir:${ELIXIR_VERSION}-${OTP_VERSION}-alpine AS elixir
 
-FROM papereira/devcontainer-base:0.2.0-alpine
+FROM papereira/devcontainer-base:0.2.1
 ARG VERSION=
 ARG USERNAME=vscode
 ARG USER_UID=1000
@@ -27,6 +29,7 @@ RUN apk update && \
   make \
   g++ \
   wget \
+  starship \
   inotify-tools && \
   rm -rf /var/cache/apk/*
 
@@ -35,11 +38,6 @@ COPY --chown=${USER_UID}:${USER_GID} shell/.zshrc-specific shell/.welcome.sh /ho
 COPY shell/.zshrc-specific shell/.welcome.sh /root/
 
 USER ${USERNAME}
-
-# install starship prompt
-RUN curl -fsSL https://starship.rs/install.sh -o install.sh && \
-  sh ./install.sh -V --yes && \
-  rm install.sh
 
 # enable iex history
 ENV ERL_AFLAGS="-kernel shell_history enabled shell_history_path '\"/home/${USERNAME}/.erlang-history\"'"
