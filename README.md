@@ -1,6 +1,6 @@
 # devcontainer-elixir
 
-This repository holds the base docker image used to build elixir development containers for Visual Studio Code
+This repository holds an Alpine Linux 3.20 docker image used to build elixir development containers for Visual Studio Code
 
 ## Building the elixir image
 
@@ -54,10 +54,6 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -e TZ=<TIMEZONE
 `-e TZ="Europe/Madrid"` will set the timezone to Madrid
 
 This command will run in interactive mode and remove the container we exit it. We are also mounting a volume that allows us to connect the container to the host docker socket.
-
-## TODO
-
-- [ ] Debian based images
 
 ## License
 

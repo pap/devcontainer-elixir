@@ -4,7 +4,7 @@ ARG ARCH
 
 FROM ${ARCH}elixir:${ELIXIR_VERSION}-${OTP_VERSION}-alpine AS elixir
 
-FROM papereira/devcontainer-base:0.2.1
+FROM papereira/devcontainer-base:0.2.2
 ARG VERSION=
 ARG USERNAME=vscode
 ARG USER_UID=1000
